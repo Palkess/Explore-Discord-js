@@ -1,0 +1,22 @@
+{
+  "name": "explore-discord-js",
+  "version": "1.0.0",
+  "description": "Testing functionality in discord.js",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Palkess/Explore-Discord-js.git"
+  },
+  "author": "Palkess",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Palkess/Explore-Discord-js/issues"
+  },
+  "homepage": "https://github.com/Palkess/Explore-Discord-js#readme",
+  "dependencies": {
+    "discord.js": "^11.5.1"
+  }
+}

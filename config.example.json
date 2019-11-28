@@ -1,18 +1,21 @@
 {
-  "connection": {
-    "token": "YOUR TOKEN"
-  },
-  "servers": [
-    {
-      "server_id": "SERVER ID",
-      "allowed_channels_ids": [
-        "CHANNEL ID 1",
-        "CHANNEL ID 2",
-      ],
-      "super_role_names": [
-        "Role 1",
-        "Role 2",
-      ]
+    "general": {
+        "commandPrefix": "!"
     },
-  ]
+    "connection": {
+        "token": "YOUR TOKEN"
+    },
+    "servers": [
+        {
+            "server_id": "SERVER ID",
+            "allowed_channels_ids": [
+                "CHANNEL D 1",
+                "CHANNEL ID 2",
+            ],
+            "super_role_names": [
+                "ROLE NAME 1",
+                "ROLE NAME 2",
+            ]
+        }
+    ]
 }

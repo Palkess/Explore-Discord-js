@@ -85,13 +85,13 @@ function queueToString() {
 function getHelpText() {
     let output = "";
 
-    output += "!help - Displays All Commands\n";
-    output += "!join MESSAGE - Adds you to the Queue with an optional message to get into a ship\n";
-    output += "!leave - Removes you from the Queue to get into a ship\n";
-    output += "!queue - Displays the current Queue list\n";
-    output += "!remove, USERNAME - Server Admin/Creators only command that removes the specified user from the Queue List\n";
-    output += "!clearqueue - Server Admin/Creators only command that clears the entire Queue list\n";
-    output += "!info - Information about the bot and its creators.\n";
+    output += `${config.general.commandPrefix}help - Displays All Commands\n`;
+    output += `${config.general.commandPrefix}join MESSAGE - Adds you to the Queue with an optional message to get into a ship\n`;
+    output += `${config.general.commandPrefix}leave - Removes you from the Queue to get into a ship\n`;
+    output += `${config.general.commandPrefix}queue - Displays the current Queue list\n`;
+    output += `${config.general.commandPrefix}remove, USERNAME - Server Admin/Creators only command that removes the specified user from the Queue List\n`;
+    output += `${config.general.commandPrefix}clearqueue - Server Admin/Creators only command that clears the entire Queue list\n`;
+    output += `${config.general.commandPrefix}info - Information about the bot and its creators.\n`;
 
     return output;
 }
@@ -116,19 +116,19 @@ client.on('message', msg => {
     }
 
     if(isChannelAllowed(msg.guild.id, msg.channel.id)) {
-        if (msg.content.startsWith('!')) {
+        if (msg.content.startsWith(config.general.commandPrefix)) {
             let command = msg.content.split(' ')[0];
 
             switch(command) {
-                case "!join":
-                    if(addUserToQueue(msg.member.user.username + "#" + msg.member.user.discriminator, msg.content.replace("!join", "").trim())) {
+                case `${config.general.commandPrefix}join`:
+                    if(addUserToQueue(msg.member.user.username + "#" + msg.member.user.discriminator, msg.content.replace(`${config.general.commandPrefix}join`, "").trim())) {
                         msg.reply(`You have joined the queue!\nYou have position ${queue.length}.`);
                     } else {
                         msg.reply("You are already in the queue!")
                     }
 
                     break;
-                case "!leave":
+                case `${config.general.commandPrefix}leave`:
                     if(removeUserFromQueue(msg.member.user.username + "#" + msg.member.user.discriminator)) {
                         msg.reply("You have left the queue.");
                     } else {
@@ -136,40 +136,40 @@ client.on('message', msg => {
                     }
 
                     break;
-                case "!queue":
+                case `${config.general.commandPrefix}queue`:
                     msg.channel.send(queueToString());
 
                     break;
 
-                case "!help":
+                case `${config.general.commandPrefix}help`:
                     msg.channel.send(getHelpText());
 
                     break;
 
-                case "!info":
+                case `${config.general.commandPrefix}info`:
                     msg.channel.send(getInfoText());
 
                     break;
 
                 // Admin commands
-                case "!save":
+                case `${config.general.commandPrefix}save`:
                     if(isAdmin(msg.guild.id, msg.member.highestRole.name)) {
                         saveQueueToFile();
                         msg.author.send("You saved the current queue.");
                     }
 
                     break;
-                case "!remove":
+                case `${config.general.commandPrefix}remove`:
                     if(isAdmin(msg.guild.id, msg.member.highestRole.name)) {
-                        if(removeUserFromQueue(msg.content.replace("!remove", "").trim())) {
-                            msg.channel.send(`${msg.content.replace("!remove", "").trim()} was removed from the queue.`);
+                        if(removeUserFromQueue(msg.content.replace(`${config.general.commandPrefix}remove`, "").trim())) {
+                            msg.channel.send(`${msg.content.replace(`${config.general.commandPrefix}remove`, "").trim()} was removed from the queue.`);
                         } else {
                             msg.channel.send("Noone with that username exists in the queue. Did you spell the username correctly?");
                         }
                     }
 
                     break;
-                case "!clear":
+                case `${config.general.commandPrefix}clear`:
                     if(isAdmin(msg.guild.id, msg.member.highestRole.name)) {
                         queue = [];
 
